@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "New blog system"
+title:  "New Blog System"
 date:   2021-02-01 21:26:23 -0800
 categories: blog
 ---
