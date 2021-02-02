@@ -4,6 +4,18 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Create New Post",
+            "type": "shell",
+            "command": "${workspaceFolder}/create.post.sh ${input:postTitle}",
+            "group": "none",
+            "options": {
+                "env": {
+                    "TZ": "America/Los_Angeles",
+                }
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Build (Local)",
             "type": "shell",
             "command": "/usr/local/bin/mkdocs build",
