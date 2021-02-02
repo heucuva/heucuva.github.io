@@ -57,7 +57,6 @@ layout: main
 !!! Blog
 
     Latest Blog Entry: [${*} (${post_month}/${post_day}/${post_year})](${blog_path}/${title_slug}.md)
---8<--
 EOF
 
 printf -- "${front_matter}" > "${repo_dir}/docs/index.md"

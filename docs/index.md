@@ -13,4 +13,3 @@ layout: main
 !!! Blog
 
     Latest Blog Entry: [New Blog System (02/01/2021)](blog/2021/02/01/new-blog-system.md)
---8<--
