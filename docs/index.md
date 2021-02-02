@@ -1,6 +1,9 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
-layout: home
+title: "Home"
+layout: main
 ---
+# Sitemap
+
+* [Home](index.md)
+* [About](about.md)
+* [Blog](blog/2021/02/01/new-blog-system.md)

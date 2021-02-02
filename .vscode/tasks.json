@@ -42,5 +42,12 @@
             },
             "problemMatcher": []
         }
+    ],
+    "inputs": [
+        {
+            "description": "title of the new post",
+            "id": "postTitle",
+            "type": "promptString"
+        }
     ]
 }

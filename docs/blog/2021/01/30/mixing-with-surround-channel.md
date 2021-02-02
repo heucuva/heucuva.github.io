@@ -20,7 +20,7 @@ In order to be 100% compatible with Pro Logic II, step 4 can't be bypassed. It r
 
 In the process of researching how to write my own, I came across some code that [Derek J. Evans][dje-email] wrote for a Reaper JS plugin that takes a quad-channel output and generates a Pro Logic II-compatible downmix to stereo - seems pretty much right on the money for my needs:
 
-{% highlight javascript %}
+```javascript
 /*
 ** Name: DPLII Quadrophonic Encoder
 ** Auth: Derek J. Evans (derek.john.evans@hotmail.com)
@@ -121,7 +121,7 @@ desc: DPLII Quadrophonic Encoder
   spl1 = FR + RL * db2 + RR * db1; // Right Total
 
   pos += 2;
-{% endhighlight %}
+```
 
 Now to convert it to Go and slot it in somehow...
 

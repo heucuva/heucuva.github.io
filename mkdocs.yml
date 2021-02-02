@@ -9,6 +9,8 @@ theme:
     accent: 'light green'
   features:
     - navigation.tabs
+    - search.suggest
+    - toc.integrate
 
 extra_css:
   - stylesheets/dark_theme.css
@@ -31,7 +33,9 @@ markdown_extensions:
       linenums: true
 
 plugins:
+  - macros:
+  - search:
   - blog:
-      #folder: "blog"
+      folder: "blog"
       format: "(%m/%d/%y)"
       text-align: "right"

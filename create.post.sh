@@ -22,7 +22,8 @@ if [ -z "${blog_folder}" ]; then
     blog_folder="blog"
 fi
 title_slug="$(printf -- "$post_title" | sed -E 's/[^a-zA-Z0-9]+/-/g' | tr "[:upper:]" "[:lower:]")"
-post_dir="${repo_dir}/docs/${blog_folder}/${post_year}/${post_month}/${post_day}"
+blog_path="${blog_folder}/${post_year}/${post_month}/${post_day}"
+post_dir="${repo_dir}/docs/${blog_path}"
 mkdir -p "${post_dir}"
 post_path="${post_dir}/${title_slug}.md"
 [ -e "$post_path" ] && printf 'Error: Post exists already.\n' && exit 2
@@ -39,3 +40,17 @@ EOF
 printf -- "${front_matter}" > "${post_path}"
 
 printf -- '%s\n' "${post_path}"
+
+IFS= read -r -d '' front_matter << EOF
+---
+title: "Home"
+layout: main
+---
+# Sitemap
+
+* [Home](index.md)
+* [About](about.md)
+* [Blog](${blog_path}/${title_slug}.md)
+EOF
+
+printf -- "${front_matter}" > "${repo_dir}/docs/index.md"

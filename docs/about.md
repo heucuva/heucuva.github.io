@@ -1,7 +1,6 @@
 ---
-layout: page
+layout: main
 title: About
-permalink: /about/
 ---
 
 This is a development blog for my personal projects and any work that I might do outside of my normal employer-sanctioned activities.
