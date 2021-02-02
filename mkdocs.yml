@@ -1,0 +1,35 @@
+site_name: My Docs
+
+# Documentation and theme
+theme:
+  name: 'material'
+  custom_dir: 'theme'
+  palette:
+    primary: 'green'
+    accent: 'light green'
+
+extra_css:
+  - stylesheets/dark_theme.css
+  - stylesheets/codehilite.css
+  - stylesheets/dark_theme-admonition.css
+  - stylesheets/pymdownx-highlight.css
+
+markdown_extensions:
+  - meta
+  - admonition
+  - pymdownx.magiclink
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.tasklist:
+      clickable_checkbox: false
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      linenums_style: pymdownx.inline
+      linenums: true
+
+plugins:
+  - blog:
+      #folder: "blog"
+      format: "(%m/%d/%y)"
+      text-align: "right"
