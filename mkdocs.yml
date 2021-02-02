@@ -1,4 +1,4 @@
-site_name: My Docs
+site_name: Jason's Dev Notes
 
 # Documentation and theme
 theme:
@@ -7,6 +7,8 @@ theme:
   palette:
     primary: 'green'
     accent: 'light green'
+  features:
+    - navigation.tabs
 
 extra_css:
   - stylesheets/dark_theme.css
