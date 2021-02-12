@@ -14,7 +14,7 @@
     
     
       
-        <title>Panning Calculations - Jason's Dev Notes</title>
+        <title>Stop Fighting the Language - Jason's Dev Notes</title>
       
     
     
@@ -105,7 +105,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Panning Calculations
+              Stop Fighting the Language
             
           </span>
         </div>
@@ -178,7 +178,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../02/11/stop-fighting-the-language/" class="md-tabs__link md-tabs__link--active">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
         Blog
       </a>
     </li>
@@ -265,30 +265,6 @@
             
   
   
-  
-    <li class="md-nav__item">
-      <a href="../../../02/11/stop-fighting-the-language/" class="md-nav__link">
-        Stop Fighting the Language (02/11/20)
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../02/01/new-blog-system/" class="md-nav__link">
-        New Blog System (02/01/20)
-      </a>
-    </li>
-  
-
-          
-            
-  
-  
     
   
   
@@ -298,7 +274,7 @@
       
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Panning Calculations (01/31/20)
+        Stop Fighting the Language (02/11/20)
       </a>
       
     </li>
@@ -310,7 +286,31 @@
   
   
     <li class="md-nav__item">
-      <a href="../../30/mixing-with-surround-channel/" class="md-nav__link">
+      <a href="../../01/new-blog-system/" class="md-nav__link">
+        New Blog System (02/01/20)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01/31/panning-calculations/" class="md-nav__link">
+        Panning Calculations (01/31/20)
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../01/30/mixing-with-surround-channel/" class="md-nav__link">
         Mixing with Surround Channel (01/30/20)
       </a>
     </li>
@@ -336,10 +336,112 @@
               
                 
                 
-                  <h1>Panning Calculations (01/31/20)</h1>
+                  <h1>Stop Fighting the Language (02/11/20)</h1>
                 
-                <p>Multichannel audio panning is a scientific study all by itself. I knew this before I started in on building a music tracker and I understood that I shouldn't cut corners when building out the panning/positioning, as retrofitting a correct solution on top of a poor solution would be more effort than writing it correctly the first time.</p>
-<p>However, laziness and instant gratification got the better part of me and instead of building a reasonable solution in on the first go, I only spent enough time to get a minimum viable solution in place... and the longer I put off completely gutting the panning/positioning/channel separation system and replacing it with the correct solution, the worse the situation gets.</p>
+                <p>Sometimes, there are new things added to languages that makes
+your work infinitely easier. You just have to spend the time
+to integrate it into your workflows.</p>
+<p>For some reason, I learned about Go's type system and tried
+to shoehorn C++-style classifications into it. Along the way,
+I learned how to leverage the type system properly, but it's
+been a struggle trying to keep from falling back onto bad
+habits.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>An example of what I'm referring to looks something like
+this.</p>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Bad</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">SampleConverter</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Value</span><span class="p">()</span> <span class="nx">volume</span><span class="p">.</span><span class="nx">Value</span>
+    <span class="nx">Size</span><span class="p">()</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">SampleConverter8BitSigned</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">SampleConverter</span>
+    <span class="nx">temp</span> <span class="kt">int8</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">SampleConverter8BitSigned</span><span class="p">)</span> <span class="nx">Value</span><span class="p">()</span> <span class="nx">volume</span><span class="p">.</span><span class="nx">Value</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">volume</span><span class="p">.</span><span class="nx">Value</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">temp</span><span class="p">)</span> <span class="o">/</span> <span class="mh">0x80</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="o">*</span><span class="nx">SampleConverter8BitSigned</span><span class="p">)</span> <span class="nx">Size</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>In this example, there are a number of issues:</p>
+<ol>
+<li>
+<p>In order to fulfil the contract with the <code>SampleConverter</code> interface, the functions attached to the struct need to be a pointer. While this isn't terrible, it means that the value internally is inherently mutable, which isn't great.</p>
+</li>
+<li>
+<p>There's a random pointer shoved into the struct, named <code>SampleConverter</code>. This is very sub-optimal, as it bloats memory.</p>
+</li>
+</ol>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Better</label><div class="tabbed-content">
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kd">type</span> <span class="nx">SampleConverter</span> <span class="kd">interface</span> <span class="p">{</span>
+    <span class="nx">Value</span><span class="p">()</span> <span class="nx">volume</span><span class="p">.</span><span class="nx">Value</span>
+    <span class="nx">Size</span><span class="p">()</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">SampleConverter8BitSigned</span> <span class="kt">int8</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">SampleConverter8BitSigned</span><span class="p">)</span> <span class="nx">Value</span><span class="p">()</span> <span class="nx">volume</span><span class="p">.</span><span class="nx">Value</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">volume</span><span class="p">.</span><span class="nx">Value</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span> <span class="o">/</span> <span class="mh">0x80</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">s</span> <span class="nx">SampleConverter8BitSigned</span><span class="p">)</span> <span class="nx">Size</span><span class="p">()</span> <span class="kt">int</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">1</span>
+<span class="p">}</span>
+</code></pre></div>
+</td></tr></table>
+<p>In this example, the solution is much cleaner and enjoys the following benefits:</p>
+<ol>
+<li>
+<p>The compiler can solve for the interface automatically and will apply a auto-pointer where needed.</p>
+</li>
+<li>
+<p>The value stored within is immutable, as expected.</p>
+</li>
+<li>
+<p>Inlined references to this value will only be stored on the stack or in the CPU's registers instead of in the heap, which means there's no memory cleanup.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<p>There are so many places in gotracker that need this sort of cleanup. Fortunately, I made all the effects work off this model, but they're only accounting for a third of the whole codebase at best.</p>
                 
                   
                 
@@ -360,7 +462,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../30/mixing-with-surround-channel/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../01/new-blog-system/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -369,25 +471,11 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Mixing with Surround Channel (01/30/20)
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../../../02/01/new-blog-system/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
                 New Blog System (02/01/20)
               </div>
             </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
           </a>
+        
         
       </nav>
     </div>
